@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RedisModule } from './redis/redis.module';
 import { BatchService } from './batch/batch.service';
 import { BatchModule } from './batch/batch.module';
+import { ExamModule } from './exam/exam.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { BatchModule } from './batch/batch.module';
     AuthModule,
     UserModule,
     BatchModule,
+    ExamModule,
   ],
   controllers: [],
   providers: [],
