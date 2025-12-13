@@ -21,7 +21,18 @@ export class AuthService {
     const passwordHash = await bcrypt.hash(dto.password, salt);
 
     const newUser = await this.userModel.create({ ...dto, passwordHash });
-    return { id: newUser._id, email: newUser.email };
+    
+    const payload = { sub: newUser._id, email: newUser.email, role: newUser.role };
+    const token = await this.jwtService.signAsync(payload);
+   return {
+      access_token: token,
+      user: {
+        id: newUser._id,
+        email: newUser.email,
+        role: newUser.role,
+        name: newUser.name
+      }
+    };
   }
 
   async login(dto: LoginDto) {
