@@ -6,6 +6,8 @@ import { UserModule } from './user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RedisModule } from './redis/redis.module';
+import { BatchService } from './batch/batch.service';
+import { BatchModule } from './batch/batch.module';
 
 @Module({
   imports: [
@@ -20,6 +22,9 @@ import { RedisModule } from './redis/redis.module';
     RedisModule, 
     AuthModule,
     UserModule,
+    BatchModule,
   ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
