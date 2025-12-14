@@ -9,6 +9,7 @@ import { RedisModule } from './redis/redis.module';
 import { BatchService } from './batch/batch.service';
 import { BatchModule } from './batch/batch.module';
 import { ExamModule } from './exam/exam.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ExamModule } from './exam/exam.module';
     UserModule,
     BatchModule,
     ExamModule,
+    UploadModule,
   ],
   controllers: [],
   providers: [],
