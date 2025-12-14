@@ -10,14 +10,13 @@ export class Question {
   _id: string; // Auto-generate ID for every question
 
   @Prop({ required: true })
-  text: string; // e.g. "What is Newton's Second Law?"
+  text: string; 
 
   @Prop({ type: [String], required: true })
-  options: string[]; // ["F=ma", "E=mc^2", "v=u+at", "P=VI"]
+  options: string[]; 
 
-  // ⚠️ CRITICAL: 'select: false' hides the answer when sending to students
   @Prop({ required: true, select: false }) 
-  correctIndex: number; // e.g., 0 (Index of the correct option)
+  correctIndex: number; 
 
   @Prop({ default: 1 })
   marks: number;
@@ -29,21 +28,23 @@ const QuestionSchema = SchemaFactory.createForClass(Question);
 @Schema({ timestamps: true })
 export class Exam {
   @Prop({ required: true })
-  title: string; // e.g. "Unit 1 MCQ"
+  title: string; 
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Batch', required: true })
-  batchId: string; // Linked to the Class
+  batchId: string; 
 
   @Prop({ required: true })
-  startTime: Date; // e.g. "2025-10-10T08:00:00Z"
+  startTime: Date; 
 
   @Prop({ required: true })
-  durationMinutes: number; // e.g. 60
+  durationMinutes: number;
 
   @Prop({ default: 'DRAFT', enum: ['DRAFT', 'PUBLISHED', 'ARCHIVED'] })
   status: string;
 
-  // Embed the questions array directly here
+  @Prop()
+  resourcePdfUrl?: string;
+
   @Prop({ type: [QuestionSchema], default: [] })
   questions: Question[];
 }
